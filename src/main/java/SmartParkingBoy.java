@@ -12,7 +12,7 @@ public class SmartParkingBoy extends ParkingBoy implements Calculator{
     protected ParkingLot getSpaceParkingLot(){
         ParkingLot parkingLot = parkingLots.iterator().next();
         for(ParkingLot pl : parkingLots){
-            if(pl.getSpaceRate() >= parkingLot.getSpaceRate()){
+            if(pl.calculate(this) >= parkingLot.calculate(this)){
                 parkingLot = pl;
             }
         }

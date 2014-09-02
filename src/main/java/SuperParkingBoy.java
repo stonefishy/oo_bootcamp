@@ -9,18 +9,6 @@ public class SuperParkingBoy extends ParkingBoy implements Calculator{
     }
 
     @Override
-    protected ParkingLot getSpaceParkingLot(){
-        ParkingLot parkingLot = parkingLots.iterator().next();
-        for(ParkingLot pl : parkingLots){
-            if(pl.getSpaceCount() >= parkingLot.calculate(this)){
-                parkingLot = pl;
-            }
-        }
-        return parkingLot;
-    }
-
-
-    @Override
     public float calculate(int space, int availableSpace) {
         return (float)availableSpace/space;
     }

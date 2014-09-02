@@ -17,13 +17,6 @@ public class ParkingLot {
         mapCar = new HashMap<String, Car>(spaceCount);
     }
 
-    protected int getSpaceCount(){
-        return spaceCount;
-    }
-
-    protected float getSpaceRate(){
-        return spaceCount/maxSpace;
-    }
     public float calculate(Calculator calculator) {
         return calculator.calculate(maxSpace, spaceCount);
     }
