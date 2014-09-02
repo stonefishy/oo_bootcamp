@@ -8,11 +8,24 @@ public class ParkingLot {
     private int spaceCount;
     private String parkingLotName;
     private Map<String, Car> mapCar;
+    private int maxSpace;
 
     public ParkingLot(String parkingLotName, int spaceCount){
         this.parkingLotName = parkingLotName;
         this.spaceCount = spaceCount;
+        this.maxSpace = spaceCount;
         mapCar = new HashMap<String, Car>(spaceCount);
+    }
+
+    protected int getSpaceCount(){
+        return spaceCount;
+    }
+
+    protected float getSpaceRate(){
+        return spaceCount/maxSpace;
+    }
+    public float calculate(Calculator calculator) {
+        return calculator.calculate(maxSpace, spaceCount);
     }
 
     public boolean hasSpace() {

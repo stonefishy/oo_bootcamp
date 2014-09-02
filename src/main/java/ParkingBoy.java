@@ -4,10 +4,10 @@ import java.util.Set;
 /**
  * Created by yushi on 9/1/14.
  */
-public class ParkingMan {
-    private Set<ParkingLot> parkingLots;
+public class ParkingBoy implements ParkingPeople {
+    protected Set<ParkingLot> parkingLots;
 
-    public ParkingMan(Set<ParkingLot> parkingLots){
+    public ParkingBoy(Set<ParkingLot> parkingLots){
         this.parkingLots = new HashSet<ParkingLot>();
         this.parkingLots.addAll(parkingLots);
     }
@@ -20,8 +20,9 @@ public class ParkingMan {
         return  canFindSpace;
     }
 
+    @Override
     public String portCar(Car car) throws NoMoreSpaceException {
-        String ticket = null;
+        String ticket;
 
         if(hasCarSpace()){
             ParkingLot pl = getSpaceParkingLot();
@@ -33,6 +34,7 @@ public class ParkingMan {
         return ticket;
     }
 
+    @Override
     public Car pickCar(String ticket) throws InvalidTicketException {
         for(ParkingLot pl : parkingLots){
             Car car = pl.pickCar(ticket);
@@ -44,7 +46,7 @@ public class ParkingMan {
         return null;
     }
 
-    private ParkingLot getSpaceParkingLot(){
+    protected ParkingLot getSpaceParkingLot(){
         for(ParkingLot pl : parkingLots){
             if(pl.hasSpace()){
                 return pl;

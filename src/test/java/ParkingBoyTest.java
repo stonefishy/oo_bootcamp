@@ -10,26 +10,26 @@ import static org.mockito.Mockito.mock;
 /**
  * Created by yushi on 9/1/14.
  */
-public class ParkingManTest {
-    private ParkingMan parkingMan;
+public class ParkingBoyTest {
+    private ParkingBoy parkingBoy;
 
     @Before
     public void setUp() {
         HashSet<ParkingLot> parkingLots = new HashSet<ParkingLot>();
         parkingLots.add(new ParkingLot("parkinglot1", 1));
         parkingLots.add(new ParkingLot("parkinglot2", 2));
-        this.parkingMan = new ParkingMan(parkingLots);
+        this.parkingBoy = new ParkingBoy(parkingLots);
     }
 
     @Ignore
     @Test(expected = NoMoreSpaceException.class)
     public void should_throw_exception_when_has_no_space() throws NoMoreSpaceException {
         //given
-        ParkingMan mockParkingMan = mock(ParkingMan.class);
-        given(mockParkingMan.hasCarSpace()).willReturn(false);
+        ParkingBoy mockParkingBoy = mock(ParkingBoy.class);
+        given(mockParkingBoy.hasCarSpace()).willReturn(false);
 
         //when
-        parkingMan.portCar(new Car("Car1"));
+        parkingBoy.portCar(new Car("Car1"));
 
         //then
     }
@@ -37,12 +37,12 @@ public class ParkingManTest {
     @Test(expected = NoMoreSpaceException.class)
     public void should_throw_exception_when_has_no_space2() throws NoMoreSpaceException {
         //given
-        parkingMan.portCar(new Car("Car1"));
-        parkingMan.portCar(new Car("Car2"));
-        parkingMan.portCar(new Car("Car3"));
+        parkingBoy.portCar(new Car("Car1"));
+        parkingBoy.portCar(new Car("Car2"));
+        parkingBoy.portCar(new Car("Car3"));
 
         //when
-        parkingMan.portCar(new Car("Car4"));
+        parkingBoy.portCar(new Car("Car4"));
 
         //then
     }
@@ -54,11 +54,11 @@ public class ParkingManTest {
 
         HashSet<ParkingLot> parkingLots = new HashSet<ParkingLot>();
         parkingLots.add(pl1);
-        ParkingMan parkingMan = new ParkingMan(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         given(pl1.hasSpace()).willReturn(false);
 
         //when
-        parkingMan.portCar(new Car("Car1"));
+        parkingBoy.portCar(new Car("Car1"));
 
         //then
     }
@@ -71,7 +71,7 @@ public class ParkingManTest {
         String result = String.valueOf(car.getCarName().hashCode());
 
         //when
-        String ticket = parkingMan.portCar(car);
+        String ticket = parkingBoy.portCar(car);
         //then
         assertThat(ticket).isEqualTo(result);
     }
@@ -80,11 +80,11 @@ public class ParkingManTest {
     public void should_return_car_when_ticket_valid() throws InvalidTicketException, NoMoreSpaceException {
         //given
         Car car = new Car("Car1");
-        parkingMan.portCar(car);
+        parkingBoy.portCar(car);
         String ticket = String.valueOf(car.getCarName().hashCode());
 
         //when
-        Car pickCar = parkingMan.pickCar(ticket);
+        Car pickCar = parkingBoy.pickCar(ticket);
 
         //then
         assertThat(pickCar).isEqualTo(car);
@@ -94,11 +94,11 @@ public class ParkingManTest {
     public void should_return_ticket_when_one_parking_full_but_another_parking_has_space() throws NoMoreSpaceException {
         //given
         Car car = new Car("Car1");
-        parkingMan.portCar(new Car("Car2"));
+        parkingBoy.portCar(new Car("Car2"));
         String result = String.valueOf(car.getCarName().hashCode());
 
         //when
-        String ticket = parkingMan.portCar(car);
+        String ticket = parkingBoy.portCar(car);
 
         //then
         assertThat(ticket).isEqualTo(result);
@@ -110,8 +110,8 @@ public class ParkingManTest {
         String ticket = "adc";
 
         //when
-        parkingMan.portCar(new Car("Car1"));
-        parkingMan.pickCar(ticket);
+        parkingBoy.portCar(new Car("Car1"));
+        parkingBoy.pickCar(ticket);
 
         //then
     }
