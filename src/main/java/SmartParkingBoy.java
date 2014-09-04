@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by yushi on 9/2/14.
@@ -6,6 +7,10 @@ import java.util.HashSet;
 public class SmartParkingBoy extends ParkingMan implements Calculator{
     public SmartParkingBoy(HashSet<ParkingLot> parkingLots) {
         super(parkingLots);
+    }
+
+    public SmartParkingBoy(String name, Set<ParkingLot> parkingLots) {
+        super(name, parkingLots);
     }
 
     @Override

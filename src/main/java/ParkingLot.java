@@ -1,3 +1,4 @@
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ public class ParkingLot {
     private Map<String, Car> mapCar;
     private int maxSpace;
 
-    public ParkingLot(String parkingLotName, int spaceCount){
+    public ParkingLot(String parkingLotName, int spaceCount) {
         this.parkingLotName = parkingLotName;
         this.spaceCount = spaceCount;
         this.maxSpace = spaceCount;
@@ -41,11 +42,11 @@ public class ParkingLot {
 
     public Car pickCar(String ticket) throws InvalidTicketException {
         Car car;
-        if(isTicketValid(ticket)){
+        if (isTicketValid(ticket)) {
             car = mapCar.get(ticket);
             mapCar.remove(ticket);
             spaceCount++;
-        }else {
+        } else {
             throw new InvalidTicketException();
         }
 
@@ -56,11 +57,21 @@ public class ParkingLot {
         return String.valueOf(car.getCarName().hashCode());
     }
 
-    private boolean isTicketValid(String ticket){
-        if(ticket != null && mapCar.containsKey(ticket)){
+    public void printReport(PrintStream printStream) {
+        String info = String.format("%s, %d totalparkinglots; %d parkedlots; %d noparkinglots",
+                parkingLotName, maxSpace, maxSpace - spaceCount, spaceCount);
+        printStream.println(info);
+    }
+
+    private boolean isTicketValid(String ticket) {
+        if (ticket != null && mapCar.containsKey(ticket)) {
             return true;
         }
 
         return false;
+    }
+
+    public int getMaxSpace() {
+        return maxSpace;
     }
 }

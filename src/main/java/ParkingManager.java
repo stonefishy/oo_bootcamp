@@ -11,6 +11,10 @@ public class ParkingManager extends ParkingBoy {
         super(parkingLots);
     }
 
+    public ParkingManager(String name, Set<ParkingLot> parkingLots) {
+        super(name, parkingLots);
+    }
+
     public void addParkingMan(ParkingPeople parkingPeople) {
         this.parkingPeoples.add(parkingPeople);
     }
@@ -39,5 +43,9 @@ public class ParkingManager extends ParkingBoy {
         }
 
         return super.pickCar(ticket);
+    }
+
+    public Set<ParkingPeople> getParkingPeoples() {
+        return parkingPeoples;
     }
 }

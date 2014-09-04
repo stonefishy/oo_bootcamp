@@ -10,6 +10,10 @@ public class ParkingBoy extends ParkingMan {
         super(parkingLots);
     }
 
+    public ParkingBoy(String name, Set<ParkingLot> parkingLots) {
+        super(name, parkingLots);
+    }
+
     @Override
     protected ParkingLot getSpaceParkingLot() {
         for (ParkingLot pl : parkingLots) {

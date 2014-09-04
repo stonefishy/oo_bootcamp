@@ -1,3 +1,4 @@
+import java.io.PrintStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -6,9 +7,16 @@ import java.util.Set;
  */
 public abstract class ParkingMan implements ParkingPeople {
 
+    private String name;
     protected Set<ParkingLot> parkingLots;
 
     public ParkingMan(Set<ParkingLot> parkingLots) {
+        this.parkingLots = new HashSet<ParkingLot>();
+        this.parkingLots.addAll(parkingLots);
+    }
+
+    public ParkingMan(String name, Set<ParkingLot> parkingLots) {
+        this.name = name;
         this.parkingLots = new HashSet<ParkingLot>();
         this.parkingLots.addAll(parkingLots);
     }
@@ -37,6 +45,18 @@ public abstract class ParkingMan implements ParkingPeople {
         }
 
         return null;
+    }
+
+    @Override
+    public void printReport(PrintStream printStream) {
+        String info = String.format("%s:%s, %d parkinglots", getClass().getName(), name, parkingLots.size());
+        printStream.println(info);
+        printStream.println();
+
+        for (ParkingLot pl : parkingLots) {
+            pl.printReport(printStream);
+        }
+        printStream.println();
     }
 
     protected abstract ParkingLot getSpaceParkingLot();
