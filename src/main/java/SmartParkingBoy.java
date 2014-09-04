@@ -3,7 +3,7 @@ import java.util.HashSet;
 /**
  * Created by yushi on 9/2/14.
  */
-public class SmartParkingBoy extends ParkingBoy implements Calculator{
+public class SmartParkingBoy extends ParkingMan implements Calculator{
     public SmartParkingBoy(HashSet<ParkingLot> parkingLots) {
         super(parkingLots);
     }

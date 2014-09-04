@@ -21,19 +21,6 @@ public class ParkingBoyTest {
         this.parkingBoy = new ParkingBoy(parkingLots);
     }
 
-    @Ignore
-    @Test(expected = NoMoreSpaceException.class)
-    public void should_throw_exception_when_has_no_space() throws NoMoreSpaceException {
-        //given
-        ParkingBoy mockParkingBoy = mock(ParkingBoy.class);
-        given(mockParkingBoy.hasCarSpace()).willReturn(false);
-
-        //when
-        parkingBoy.portCar(new Car("Car1"));
-
-        //then
-    }
-
     @Test(expected = NoMoreSpaceException.class)
     public void should_throw_exception_when_has_no_space2() throws NoMoreSpaceException {
         //given

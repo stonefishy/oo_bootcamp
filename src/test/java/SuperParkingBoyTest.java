@@ -17,9 +17,9 @@ public class SuperParkingBoyTest {
         //given
         Car car = new Car("Car1");
         parkingLots = new HashSet<ParkingLot>();
-        ParkingLot parkingLot1 = new ParkingLot("ParkingLot1", 3);
+        ParkingLot parkingLot1 = spy(new ParkingLot("ParkingLot1", 3));
+        ParkingLot parkingLot2 = new ParkingLot("ParkingLot2", 2);
         parkingLot1.portCar(new Car("CarA"));
-        ParkingLot parkingLot2 = spy(new ParkingLot("ParkingLot2", 2));
         parkingLot2.portCar(new Car("CarB"));
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
